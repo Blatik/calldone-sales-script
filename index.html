@@ -164,6 +164,51 @@
             background: rgba(255, 255, 255, 0.05);
             color: var(--text-secondary);
         }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                margin-bottom: 30px;
+            }
+
+            .block {
+                padding: 15px;
+            }
+
+            .dialog-line {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .speaker {
+                min-width: auto;
+                font-size: 0.8rem;
+                padding-top: 0;
+            }
+
+            .text {
+                font-size: 1.1rem;
+            }
+
+            summary {
+                padding: 12px 15px;
+                padding-left: 35px;
+                font-size: 1rem;
+            }
+
+            summary::before {
+                left: 10px;
+            }
+
+            .details-content {
+                padding: 15px;
+            }
+        }
     </style>
 </head>
 
