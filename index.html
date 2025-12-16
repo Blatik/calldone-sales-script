@@ -218,8 +218,25 @@
 
     <h1>CallDone AI</h1>
 
+    <!-- ЕТАПИ ПРОДАЖІВ (Навігація) -->
+    <div class="block" style="margin-bottom: 30px;">
+        <h3 style="color: var(--accent-color); margin-bottom: 15px; margin-top: 0;">Етапи продажів</h3>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <a href="#greeting"
+                style="text-decoration: none; color: var(--text-primary); background: rgba(255,255,255,0.05); padding: 8px 16px; border: 1px solid var(--border-color); border-radius: 6px; transition: background 0.2s;">Привітання</a>
+            <a href="#validation"
+                style="text-decoration: none; color: var(--text-primary); background: rgba(255,255,255,0.05); padding: 8px 16px; border: 1px solid var(--border-color); border-radius: 6px; transition: background 0.2s;">Валідація</a>
+            <a href="#pain"
+                style="text-decoration: none; color: var(--text-primary); background: rgba(255,255,255,0.05); padding: 8px 16px; border: 1px solid var(--border-color); border-radius: 6px; transition: background 0.2s;">Болі</a>
+            <a href="#presentation"
+                style="text-decoration: none; color: var(--text-primary); background: rgba(255,255,255,0.05); padding: 8px 16px; border: 1px solid var(--border-color); border-radius: 6px; transition: background 0.2s;">Презентація</a>
+            <a href="#objections"
+                style="text-decoration: none; color: var(--text-primary); background: rgba(255,255,255,0.05); padding: 8px 16px; border: 1px solid var(--border-color); border-radius: 6px; transition: background 0.2s;">Заперечення</a>
+        </div>
+    </div>
+
     <!-- ПРИВІТАННЯ -->
-    <div class="section">
+    <div class="section" id="greeting">
         <h2 class="section-title">ПРИВІТАННЯ</h2>
 
         <div class="block">
@@ -255,7 +272,7 @@
     </div>
 
     <!-- ВАЛІДАЦІЯ -->
-    <div class="section">
+    <div class="section" id="validation">
         <h2 class="section-title">ВАЛІДАЦІЯ</h2>
 
         <div class="block">
@@ -283,6 +300,46 @@
                 <div class="speaker manager">Менеджер</div>
                 <div class="text">1. Підкажіть будь ласка скільки у вас менеджерів,<br>яка тривалість дзвінків на
                     місяць?</div>
+            </div>
+
+            <!-- Block: Tariffs Reference -->
+            <div class="block"
+                style="margin-top: 15px; border: 1px dashed var(--accent-color); background: rgba(59, 130, 246, 0.05);">
+                <h4
+                    style="color: var(--accent-color); margin-top: 0; margin-bottom: 10px; font-size: 0.9rem; text-transform: uppercase;">
+                    Довідкова інформація: Тарифи</h4>
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; text-align: center;">
+                    <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+                        <div style="font-weight: bold; color: var(--text-primary); margin-bottom: 5px;">Starter</div>
+                        <div style="color: var(--client-color); font-size: 1.1em; font-weight: bold;">20 EUR</div>
+                        <div style="font-size: 0.85em; color: var(--text-secondary);">606 хв</div>
+                        <div style="font-size: 0.75em; color: var(--text-secondary); opacity: 0.7; margin-top: 2px;">
+                            0.033 €/хв</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+                        <div style="font-weight: bold; color: var(--text-primary); margin-bottom: 5px;">Basic</div>
+                        <div style="color: var(--client-color); font-size: 1.1em; font-weight: bold;">50 EUR</div>
+                        <div style="font-size: 0.85em; color: var(--text-secondary);">1 667 хв</div>
+                        <div style="font-size: 0.75em; color: var(--text-secondary); opacity: 0.7; margin-top: 2px;">
+                            0.03 €/хв</div>
+                    </div>
+                    <div
+                        style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; border: 1px solid rgba(59, 130, 246, 0.3);">
+                        <div style="font-weight: bold; color: var(--text-primary); margin-bottom: 5px;">Standard</div>
+                        <div style="color: var(--client-color); font-size: 1.1em; font-weight: bold;">100 EUR</div>
+                        <div style="font-size: 0.85em; color: var(--text-secondary);">4 500 хв</div>
+                        <div style="font-size: 0.75em; color: var(--text-secondary); opacity: 0.7; margin-top: 2px;">
+                            0.022 €/хв</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+                        <div style="font-weight: bold; color: var(--text-primary); margin-bottom: 5px;">Business</div>
+                        <div style="color: var(--client-color); font-size: 1.1em; font-weight: bold;">200 EUR</div>
+                        <div style="font-size: 0.85em; color: var(--text-secondary);">10 000 хв</div>
+                        <div style="font-size: 0.75em; color: var(--text-secondary); opacity: 0.7; margin-top: 2px;">
+                            0.02 €/хв</div>
+                    </div>
+                </div>
             </div>
 
             <details>
@@ -350,7 +407,7 @@
     </div>
 
     <!-- БОЛІ -->
-    <div class="section">
+    <div class="section" id="pain">
         <h2 class="section-title">БОЛІ</h2>
 
         <div class="block">
@@ -510,7 +567,7 @@
     </div>
 
     <!-- ПРЕЗЕНТАЦІЯ -->
-    <div class="section">
+    <div class="section" id="presentation">
         <h2 class="section-title">ПРЕЗЕНТАЦІЯ</h2>
 
         <div class="block">
@@ -544,7 +601,7 @@
     </div>
 
     <!-- ЗАПЕРЕЧЕННЯ -->
-    <div class="section">
+    <div class="section" id="objections">
         <h2 class="section-title">ЗАПЕРЕЧЕННЯ</h2>
         <div class="block">
             <details>
