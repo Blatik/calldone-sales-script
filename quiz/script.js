@@ -22,10 +22,10 @@ const quizData = [
         type: 'question',
         title: 'Яка орієнтовна загальна тривалість розмов в місяць?',
         options: [
-            { text: 'До 600 хвилин', value: 'starter' },
-            { text: '600 - 1500 хвилин', value: 'basic' },
-            { text: '1500 - 4500 хвилин', value: 'standard' },
-            { text: 'Більше 4500 хвилин', value: 'business' }
+            { text: 'До 600 хвилин', value: 600 },
+            { text: '600 - 1600 хвилин', value: 1600 },
+            { text: '1600 - 4500 хвилин', value: 4500 },
+            { text: 'Більше 4500 хвилин', value: 10000 }
         ]
     },
     {
@@ -45,6 +45,7 @@ const plans = {
     starter: {
         name: 'Starter',
         price: '20 €',
+        limit: 606,
         minutes: '606 хв',
         rate: '0.033 €/хв',
         desc: 'Ідеальний старт для малого бізнесу або одного менеджера.'
@@ -52,6 +53,7 @@ const plans = {
     basic: {
         name: 'Basic',
         price: '50 €',
+        limit: 1667,
         minutes: '1 667 хв',
         rate: '0.03 €/хв',
         desc: 'Оптимальний вибір для невеликої команди продажів.'
@@ -59,6 +61,7 @@ const plans = {
     standard: {
         name: 'Standard',
         price: '100 €',
+        limit: 4500,
         minutes: '4 500 хв',
         rate: '0.022 €/хв',
         desc: 'Найпопулярніший тариф для активних відділів продажу.'
@@ -66,6 +69,7 @@ const plans = {
     business: {
         name: 'Business',
         price: '200 €',
+        limit: 10000,
         minutes: '10 000 хв',
         rate: '0.02 €/хв',
         desc: 'Максимальна вигода для великих обсягів дзвінків.'
@@ -146,14 +150,29 @@ function showResult() {
     progressBar.style.width = '100%';
 
     // Logic to determine plan
-    // Priority: Minutes (q2) overrides Manager count usually
     let recommendedPlanKey = 'starter';
+    const minutesVal = Number(answers['q2']); // Ensure it's a number
 
-    const minutesVal = answers['q2']; // starter, basic, standard, business
+    // Find the smallest plan that covers the minutesVal
+    // Sort plans by limit to ensure correct order check
+    const sortedPlanKeys = Object.keys(plans).sort((a, b) => plans[a].limit - plans[b].limit);
 
-    // Direct mapping from minutes question
-    if (minutesVal) {
-        recommendedPlanKey = minutesVal;
+    for (const key of sortedPlanKeys) {
+        if (plans[key].limit >= minutesVal) {
+            recommendedPlanKey = key;
+            break;
+        }
+    }
+    // If minutesVal is greater than highest limit, it stays on the last one checked (conceptually business) 
+    // but the loop breaks on finding >=. If > 10000, we might want to default to Business or custom. 
+    // For now, if > 10000, the loop finishes without break? No, we default 'starter' but we should default to 'business' if none matched.
+
+    if (minutesVal > plans['business'].limit) {
+        recommendedPlanKey = 'business';
+    } else {
+        // Double check loop logic
+        // If 600: Starter (606 >= 600) -> Break. Recommended: Starter.
+        // If 4500: Standard (4500 >= 4500) -> Break. Recommended: Standard.
     }
 
     const plan = plans[recommendedPlanKey];
