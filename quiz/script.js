@@ -145,6 +145,13 @@ function nextStep() {
     }
 }
 
+const painPoints = {
+    'pain_time': (planName, planPrice) => `Ви зазначили, що у вас немає часу на контроль. Це означає, що ви втрачаєте деталі і, як наслідок, прибуток. Тариф <strong>${planName}</strong> дозволить вам повністю автоматизувати контроль якості всього за <strong>${planPrice}</strong>. Ви побачите результат вже в перший тиждень, не витрачаючи свій особистий час.`,
+    'pain_manual': (planName, planPrice) => `Вибірковий контроль не дає повної картини. Тариф <strong>${planName}</strong> забезпечить аналіз 100% дзвінків за <strong>${planPrice}</strong>. Ви отримаєте об'єктивні дані замість суб'єктивних вражень і зможете масштабувати продажі без збільшення власного навантаження.`,
+    'pain_cost': (planName, planPrice) => `Тімлід має розвивати команду, а не слухати дзвінки годинами. Тариф <strong>${planName}</strong> звільнить час вашого керівника для стратегічних задач. За <strong>${planPrice}</strong> ви отримаєте автоматизованого помічника, який зробить рутинну роботу швидше та дешевше.`,
+    'pain_high_cost': (planName, planPrice) => `Витрати на відділ якості часто перевищують ефект. Тариф <strong>${planName}</strong> коштує в рази менше (<strong>${planPrice}</strong>), ніж зарплата одного спеціаліста. При цьому ШІ перевіряє кожен дзвінок миттєво і працює без вихідних.`
+};
+
 function showResult() {
     // 100% Progress
     progressBar.style.width = '100%';
@@ -163,26 +170,29 @@ function showResult() {
             break;
         }
     }
-    // If minutesVal is greater than highest limit, it stays on the last one checked (conceptually business) 
-    // but the loop breaks on finding >=. If > 10000, we might want to default to Business or custom. 
-    // For now, if > 10000, the loop finishes without break? No, we default 'starter' but we should default to 'business' if none matched.
 
     if (minutesVal > plans['business'].limit) {
         recommendedPlanKey = 'business';
-    } else {
-        // Double check loop logic
-        // If 600: Starter (606 >= 600) -> Break. Recommended: Starter.
-        // If 4500: Standard (4500 >= 4500) -> Break. Recommended: Standard.
     }
 
     const plan = plans[recommendedPlanKey];
+
+    // Get Pain Point Message
+    const painKey = answers['q3'];
+    let painMessage = '';
+    if (painPoints[painKey]) {
+        painMessage = painPoints[painKey](plan.name, plan.price);
+    }
 
     card.innerHTML = `
         <h2>Ваш ідеальний тариф</h2>
         <div class="result-plan">${plan.name}</div>
         <div class="result-price">${plan.price} <span style="font-size: 1rem; color: var(--text-secondary); font-weight: normal;">/ міс</span></div>
-        <p>${plan.desc}</p>
         
+        <div class="pain-message" style="background: rgba(59, 130, 246, 0.1); border-left: 4px solid var(--accent-color); padding: 15px; margin: 20px 0; text-align: left; font-size: 0.95rem; line-height: 1.5;">
+            ${painMessage}
+        </div>
+
         <div class="feature-list">
             <div class="feature-item">
                 <span class="feature-icon">✓</span>
@@ -247,7 +257,6 @@ function submitLead(e) {
 
     // Simulate submission
     const btn = e.target.querySelector('button[type="submit"]');
-    const originalText = btn.innerText;
     btn.disabled = true;
     btn.innerText = "Відправка...";
 
@@ -256,9 +265,9 @@ function submitLead(e) {
             <div style="text-align: center;">
                 <h2 style="color: var(--success-color);">Дякуємо!</h2>
                 <p>Ваша заявка успішно прийнята.</p>
-                <div style="font-size: 4rem; margin: 30px 0;">✅</div>
-                <p>Наш менеджер зв'яжеться з вами в Telegram або за телефоном найближчим часом.</p>
-                <a href="https://calldone.ai" class="btn-primary">Перейти на сайт</a>
+                <div style="font-size: 4rem; margin: 20px 0;">✅</div>
+                <p style="margin-bottom: 25px; line-height: 1.5;">Пропонуємо вам відвідати наш сайт та детальніше ознайомитися з інтерфейсом системи. Спробуйте демо!</p>
+                <a href="https://calldone.io/" target="_blank" class="btn-primary">Перейти на CallDone.io</a>
             </div>
         `;
     }, 1500);
