@@ -211,6 +211,60 @@
                 padding: 15px;
             }
         }
+
+        /* Top-level Stage Details Styles */
+        details.stage-details {
+            margin-bottom: 20px;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 0;
+        }
+
+        details.stage-details>summary {
+            background-color: var(--card-bg);
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 15px 20px;
+            list-style: none;
+            position: relative;
+            padding-left: 50px;
+            /* Space for icon */
+            transition: all 0.3s ease;
+        }
+
+        details.stage-details[open]>summary {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            background-color: rgba(59, 130, 246, 0.15);
+            /* Slightly highlighted when open */
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        details.stage-details>summary::before {
+            content: '►';
+            /* Different icon for stages */
+            font-size: 0.8em;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: transform 0.3s;
+        }
+
+        details.stage-details[open]>summary::before {
+            transform: translateY(-50%) rotate(90deg);
+        }
+
+        details.stage-details>.details-content {
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin-top: 10px;
+        }
     </style>
 </head>
 
@@ -219,769 +273,827 @@
     <h1>CallDone AI</h1>
 
     <!-- ЕТАПИ ПРОДАЖІВ (Навігація) -->
-    <div class="block" style="margin-bottom: 30px;">
-        <h3 style="color: var(--accent-color); margin-bottom: 15px; margin-top: 0;">Етапи продажів</h3>
-        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-            <a href="#greeting"
-                style="text-decoration: none; color: var(--text-primary); background: rgba(255,255,255,0.05); padding: 8px 16px; border: 1px solid var(--border-color); border-radius: 6px; transition: background 0.2s;">Привітання</a>
-            <a href="#validation"
-                style="text-decoration: none; color: var(--text-primary); background: rgba(255,255,255,0.05); padding: 8px 16px; border: 1px solid var(--border-color); border-radius: 6px; transition: background 0.2s;">Валідація</a>
-            <a href="#pain"
-                style="text-decoration: none; color: var(--text-primary); background: rgba(255,255,255,0.05); padding: 8px 16px; border: 1px solid var(--border-color); border-radius: 6px; transition: background 0.2s;">Болі</a>
-            <a href="#presentation"
-                style="text-decoration: none; color: var(--text-primary); background: rgba(255,255,255,0.05); padding: 8px 16px; border: 1px solid var(--border-color); border-radius: 6px; transition: background 0.2s;">Презентація</a>
-            <a href="#objections"
-                style="text-decoration: none; color: var(--text-primary); background: rgba(255,255,255,0.05); padding: 8px 16px; border: 1px solid var(--border-color); border-radius: 6px; transition: background 0.2s;">Заперечення</a>
-        </div>
-    </div>
+    <!-- Navigation removed as per request -->
 
     <!-- ПРИВІТАННЯ -->
-    <div class="section" id="greeting">
-        <h2 class="section-title">ПРИВІТАННЯ</h2>
-
-        <div class="block">
-            <div class="dialog-line">
-                <div class="speaker manager">Менеджер</div>
-                <div class="text">Доброго дня, <span class="variable">[Ім'я клієнта]</span>! Мене звати <span
-                        class="variable">[Ваше Ім'я]</span>, компанія CallDone AI. Ви залишали заявку на сайті,
-                    Пригадуєте?</div>
-            </div>
-
-            <details>
-                <summary>Клієнт: Так</summary>
-                <div class="details-content">
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Я правильно розумію, що ви зараз активно розглядаєте методи покращення
-                            продажів, для збільшення прибутку?</div>
-                    </div>
-                    <details open>
-                        <summary>Клієнт: Так (підтвердження)</summary>
-                        <div class="details-content">
-                            <div class="dialog-line">
-                                <div class="speaker manager">Менеджер</div>
-                                <div class="text">Чудово <span class="variable">[Імʼя клієнта]</span> Ми допомагаємо
-                                    компаніям збільшити прибуток за рахунок того що ми аналізуємо 100% дзвінків відділів
-                                    продажів, виявляємо проблеми і вирішуємо їх.</div>
-                            </div>
-                        </div>
-                    </details>
+    <details class="stage-details" id="greeting" open>
+        <summary>ПРИВІТАННЯ</summary>
+        <div class="details-content">
+            <div class="block">
+                <div class="dialog-line">
+                    <div class="speaker manager">Менеджер</div>
+                    <div class="text">Доброго дня, <span class="variable">[Ім'я клієнта]</span>! Мене звати <span
+                            class="variable">[Ваше Ім'я]</span>, компанія CallDone AI. Ви залишали заявку на сайті,
+                        Пригадуєте?</div>
                 </div>
-            </details>
+
+                <details>
+                    <summary>Клієнт: Так</summary>
+                    <div class="details-content">
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Я правильно розумію, що ви зараз активно розглядаєте методи покращення
+                                продажів, для збільшення прибутку?</div>
+                        </div>
+                        <details open>
+                            <summary>Клієнт: Так (підтвердження)</summary>
+                            <div class="details-content">
+                                <div class="dialog-line">
+                                    <div class="speaker manager">Менеджер</div>
+                                    <div class="text">Чудово <span class="variable">[Імʼя клієнта]</span> Ми допомагаємо
+                                        компаніям збільшити прибуток за рахунок того що ми аналізуємо 100% дзвінків
+                                        відділів
+                                        продажів, виявляємо проблеми і вирішуємо їх.</div>
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+                </details>
+            </div>
         </div>
-    </div>
+    </details>
 
     <!-- ВАЛІДАЦІЯ -->
-    <div class="section" id="validation">
-        <h2 class="section-title">ВАЛІДАЦІЯ</h2>
+    <details class="stage-details" id="validation">
+        <summary>ВАЛІДАЦІЯ</summary>
+        <div class="details-content">
 
-        <div class="block">
-            <div class="dialog-line">
-                <div class="speaker manager">Менеджер</div>
-                <div class="text"><span class="variable">[Імʼя клієнта]</span> підкажіть, ви є власником компанії чи
-                    займаєте якусь посаду?</div>
-            </div>
-            <div class="dialog-line">
-                <div class="speaker client">Клієнт</div>
-                <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
-            </div>
-            <div class="dialog-line">
-                <div class="speaker manager">Менеджер</div>
-                <div class="text">В якій ніші ви працюєте?<span class="note">(якщо ми не знаємо)</span></div>
-            </div>
-            <div class="dialog-line">
-                <div class="speaker client">Клієнт</div>
-                <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
-            </div>
-        </div>
-
-        <div class="block">
-            <div class="dialog-line">
-                <div class="speaker manager">Менеджер</div>
-                <div class="text">1. Підкажіть будь ласка скільки у вас менеджерів,<br>яка тривалість дзвінків на
-                    місяць?</div>
+            <div class="block">
+                <div class="dialog-line">
+                    <div class="speaker manager">Менеджер</div>
+                    <div class="text"><span class="variable">[Імʼя клієнта]</span> підкажіть, ви є власником компанії чи
+                        займаєте якусь посаду?</div>
+                </div>
+                <div class="dialog-line">
+                    <div class="speaker client">Клієнт</div>
+                    <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
+                </div>
+                <div class="dialog-line">
+                    <div class="speaker manager">Менеджер</div>
+                    <div class="text">В якій ніші ви працюєте?<span class="note">(якщо ми не знаємо)</span></div>
+                </div>
+                <div class="dialog-line">
+                    <div class="speaker client">Клієнт</div>
+                    <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
+                </div>
             </div>
 
-            <!-- Block: Tariffs Reference -->
-            <div class="block"
-                style="margin-top: 15px; border: 1px dashed var(--accent-color); background: rgba(59, 130, 246, 0.05);">
-                <h4
-                    style="color: var(--accent-color); margin-top: 0; margin-bottom: 10px; font-size: 0.9rem; text-transform: uppercase;">
-                    Довідкова інформація: Тарифи</h4>
-                <div
-                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; text-align: center;">
-                    <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
-                        <div style="font-weight: bold; color: var(--text-primary); margin-bottom: 5px;">Starter</div>
-                        <div style="color: var(--client-color); font-size: 1.1em; font-weight: bold;">20 EUR</div>
-                        <div style="font-size: 0.85em; color: var(--text-secondary);">606 хв</div>
-                        <div style="font-size: 0.75em; color: var(--text-secondary); opacity: 0.7; margin-top: 2px;">
-                            0.033 €/хв</div>
-                    </div>
-                    <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
-                        <div style="font-weight: bold; color: var(--text-primary); margin-bottom: 5px;">Basic</div>
-                        <div style="color: var(--client-color); font-size: 1.1em; font-weight: bold;">50 EUR</div>
-                        <div style="font-size: 0.85em; color: var(--text-secondary);">1 667 хв</div>
-                        <div style="font-size: 0.75em; color: var(--text-secondary); opacity: 0.7; margin-top: 2px;">
-                            0.03 €/хв</div>
-                    </div>
+            <div class="block">
+                <div class="dialog-line">
+                    <div class="speaker manager">Менеджер</div>
+                    <div class="text">1. Підкажіть будь ласка скільки у вас менеджерів,<br>яка тривалість дзвінків на
+                        місяць?</div>
+                </div>
+
+                <!-- Block: Tariffs Reference -->
+                <div class="block"
+                    style="margin-top: 15px; border: 1px dashed var(--accent-color); background: rgba(59, 130, 246, 0.05);">
+                    <h4
+                        style="color: var(--accent-color); margin-top: 0; margin-bottom: 10px; font-size: 0.9rem; text-transform: uppercase;">
+                        Довідкова інформація: Тарифи</h4>
                     <div
-                        style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; border: 1px solid rgba(59, 130, 246, 0.3);">
-                        <div style="font-weight: bold; color: var(--text-primary); margin-bottom: 5px;">Standard</div>
-                        <div style="color: var(--client-color); font-size: 1.1em; font-weight: bold;">100 EUR</div>
-                        <div style="font-size: 0.85em; color: var(--text-secondary);">4 500 хв</div>
-                        <div style="font-size: 0.75em; color: var(--text-secondary); opacity: 0.7; margin-top: 2px;">
-                            0.022 €/хв</div>
-                    </div>
-                    <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
-                        <div style="font-weight: bold; color: var(--text-primary); margin-bottom: 5px;">Business</div>
-                        <div style="color: var(--client-color); font-size: 1.1em; font-weight: bold;">200 EUR</div>
-                        <div style="font-size: 0.85em; color: var(--text-secondary);">10 000 хв</div>
-                        <div style="font-size: 0.75em; color: var(--text-secondary); opacity: 0.7; margin-top: 2px;">
-                            0.02 €/хв</div>
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; text-align: center;">
+                        <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+                            <div style="font-weight: bold; color: var(--text-primary); margin-bottom: 5px;">Starter
+                            </div>
+                            <div style="color: var(--client-color); font-size: 1.1em; font-weight: bold;">20 EUR</div>
+                            <div style="font-size: 0.85em; color: var(--text-secondary);">606 хв</div>
+                            <div
+                                style="font-size: 0.75em; color: var(--text-secondary); opacity: 0.7; margin-top: 2px;">
+                                0.033 €/хв</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+                            <div style="font-weight: bold; color: var(--text-primary); margin-bottom: 5px;">Basic</div>
+                            <div style="color: var(--client-color); font-size: 1.1em; font-weight: bold;">50 EUR</div>
+                            <div style="font-size: 0.85em; color: var(--text-secondary);">1 667 хв</div>
+                            <div
+                                style="font-size: 0.75em; color: var(--text-secondary); opacity: 0.7; margin-top: 2px;">
+                                0.03 €/хв</div>
+                        </div>
+                        <div
+                            style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; border: 1px solid rgba(59, 130, 246, 0.3);">
+                            <div style="font-weight: bold; color: var(--text-primary); margin-bottom: 5px;">Standard
+                            </div>
+                            <div style="color: var(--client-color); font-size: 1.1em; font-weight: bold;">100 EUR</div>
+                            <div style="font-size: 0.85em; color: var(--text-secondary);">4 500 хв</div>
+                            <div
+                                style="font-size: 0.75em; color: var(--text-secondary); opacity: 0.7; margin-top: 2px;">
+                                0.022 €/хв</div>
+                        </div>
+                        <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+                            <div style="font-weight: bold; color: var(--text-primary); margin-bottom: 5px;">Business
+                            </div>
+                            <div style="color: var(--client-color); font-size: 1.1em; font-weight: bold;">200 EUR</div>
+                            <div style="font-size: 0.85em; color: var(--text-secondary);">10 000 хв</div>
+                            <div
+                                style="font-size: 0.75em; color: var(--text-secondary); opacity: 0.7; margin-top: 2px;">
+                                0.02 €/хв</div>
+                        </div>
                     </div>
                 </div>
+
+                <details>
+                    <summary>Клієнт: 1 (Один менеджер)</summary>
+                    <div class="details-content">
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Чудово, чи правильно я розумію,що кожний лід для вас дуже важливий, бо їх
+                                у
+                                вас не так багато?<span class="note">(ТАК)</span></div>
+                        </div>
+                        <div class="dialog-line">
+                            <div class="speaker client">Клієнт</div>
+                            <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
+                        </div>
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Окей <span class="variable">[Імʼя клієнта]</span>, у нас зараз багато
+                                компаній у яких до трьох менеджерів і вони активно використовують наш продукт та
+                                збільшують
+                                продажі. У нас навіть є спеціальний пакет для маленьких компаній. Щоб почати з нами
+                                роботу,
+                                потрібно лише 20 євро.<br>Чи плануєте ви зростати?</div>
+                        </div>
+                        <div class="dialog-line">
+                            <div class="speaker client">Клієнт</div>
+                            <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
+                        </div>
+                        <details>
+                            <summary>Клієнт: Так (планую зростати)</summary>
+                            <div class="details-content">
+                                <div class="dialog-line">
+                                    <div class="speaker manager">Менеджер</div>
+                                    <div class="text">Чудово <span class="variable">[Імʼя клієнта]</span>.</div>
+                                </div>
+                            </div>
+                        </details>
+                        <details>
+                            <summary>Клієнт: Ні (не планую)</summary>
+                            <div class="details-content">
+                                <div class="dialog-line">
+                                    <div class="speaker manager">Менеджер</div>
+                                    <div class="text">Зрозумів. Якщо ні, то ні. На все добре.</div>
+                                </div>
+                            </div>
+                        </details>
+                    </div>
             </div>
 
-            <details>
-                <summary>Клієнт: 1 (Один менеджер)</summary>
-                <div class="details-content">
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Чудово, чи правильно я розумію,що кожний лід для вас дуже важливий, бо їх у
-                            вас не так багато?<span class="note">(ТАК)</span></div>
+            <div class="block">
+                <div class="dialog-line">
+                    <div class="speaker manager">Менеджер</div>
+                    <div class="text">2. <span class="variable">[Імʼя клієнта]</span> яку телефонію використовуєте?
                     </div>
-                    <div class="dialog-line">
-                        <div class="speaker client">Клієнт</div>
-                        <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
-                    </div>
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Окей <span class="variable">[Імʼя клієнта]</span>, у нас зараз багато
-                            компаній у яких до трьох менеджерів і вони активно використовують наш продукт та збільшують
-                            продажі. У нас навіть є спеціальний пакет для маленьких компаній. Щоб почати з нами роботу,
-                            потрібно лише 20 євро.<br>Чи плануєте ви зростати?</div>
-                    </div>
-                    <div class="dialog-line">
-                        <div class="speaker client">Клієнт</div>
-                        <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
-                    </div>
-                    <details>
-                        <summary>Клієнт: Так (планую зростати)</summary>
-                        <div class="details-content">
-                            <div class="dialog-line">
-                                <div class="speaker manager">Менеджер</div>
-                                <div class="text">Чудово <span class="variable">[Імʼя клієнта]</span>.</div>
-                            </div>
-                        </div>
-                    </details>
-                    <details>
-                        <summary>Клієнт: Ні (не планую)</summary>
-                        <div class="details-content">
-                            <div class="dialog-line">
-                                <div class="speaker manager">Менеджер</div>
-                                <div class="text">Зрозумів. Якщо ні, то ні. На все добре.</div>
-                            </div>
-                        </div>
-                    </details>
                 </div>
-        </div>
-
-        <div class="block">
-            <div class="dialog-line">
-                <div class="speaker manager">Менеджер</div>
-                <div class="text">2. <span class="variable">[Імʼя клієнта]</span> яку телефонію використовуєте?</div>
-            </div>
-            <details>
-                <summary>Клієнт: Рінгостат, Юніток, Бінотел...</summary>
-                <div class="details-content" style="color: var(--text-secondary);">
-                    Рінгостат, Юніток, Бінотел, Фонет, Задарма, Стрім телеком, Астеріск
+                <details>
+                    <summary>Клієнт: Рінгостат, Юніток, Бінотел...</summary>
+                    <div class="details-content" style="color: var(--text-secondary);">
+                        Рінгостат, Юніток, Бінотел, Фонет, Задарма, Стрім телеком, Астеріск
+                    </div>
+                </details>
+                <div class="dialog-line" style="margin-top: 15px;">
+                    <div class="speaker manager">Менеджер</div>
+                    <div class="text">Прекрасно <span class="variable">[Імʼя клієнта]</span>, підключення до телефонії
+                        займає приблизно 20 хвилин, у нас повністю все автоматизовано і безкоштовно. <br>Після цього
+                        ваші
+                        дзвінки автоматично потраплятимуть у нашу систему та будуть аналізуватися та транскрибуватися.
+                    </div>
                 </div>
-            </details>
-            <div class="dialog-line" style="margin-top: 15px;">
-                <div class="speaker manager">Менеджер</div>
-                <div class="text">Прекрасно <span class="variable">[Імʼя клієнта]</span>, підключення до телефонії
-                    займає приблизно 20 хвилин, у нас повністю все автоматизовано і безкоштовно. <br>Після цього ваші
-                    дзвінки автоматично потраплятимуть у нашу систему та будуть аналізуватися та транскрибуватися.</div>
             </div>
         </div>
-    </div>
+    </details>
 
     <!-- БОЛІ -->
-    <div class="section" id="pain">
-        <h2 class="section-title">БОЛІ</h2>
+    <details class="stage-details" id="pain">
+        <summary>БОЛІ</summary>
+        <div class="details-content">
 
-        <div class="block">
-            <div class="dialog-line">
-                <div class="speaker manager">Менеджер</div>
-                <div class="text"><span class="variable">[Імʼя клієнта]</span> Як часто у вас бувають такі ситуації
-                    що, менеджери постійно ніби на телефоні, а продажів нема?
-                    <span class="note">Іноді ми навіть і не знаємо що менеджери дзвонять завжди? (жарт)</span>
-                </div>
-            </div>
-
-            <details>
-                <summary>Клієнт: Так, буває</summary>
-                <div class="details-content">
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Як зараз це вирішуєте?</div>
+            <div class="block">
+                <div class="dialog-line">
+                    <div class="speaker manager">Менеджер</div>
+                    <div class="text"><span class="variable">[Імʼя клієнта]</span> Як часто у вас бувають такі ситуації
+                        що, менеджери постійно ніби на телефоні, а продажів нема?
+                        <span class="note">Іноді ми навіть і не знаємо що менеджери дзвонять завжди? (жарт)</span>
                     </div>
-
-                    <!-- Option 1: Self Listen -->
-                    <details>
-                        <summary>Клієнт: Вирішую сам (сам слухаю)</summary>
-                        <div class="details-content">
-                            <div class="dialog-line">
-                                <div class="speaker manager">Менеджер</div>
-                                <div class="text"><span class="variable">[Імʼя клієнта]</span> Як ви вважаєте, яку
-                                    кількість дзвінків вам або вашій команді вдається пронаналізувати?</div>
-                            </div>
-                            <div class="dialog-line">
-                                <div class="speaker client">Клієнт</div>
-                                <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
-                            </div>
-                            <div class="dialog-line">
-                                <div class="speaker manager">Менеджер</div>
-                                <div class="text">Яким чином ви віддаєте фідбек проаналізованого дзвінка менеджера?
-                                </div>
-                            </div>
-
-                            <div class="dialog-line">
-                                <div class="speaker client">Клієнт</div>
-                                <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
-                            </div>
-
-                            <div class="dialog-line">
-                                <div class="speaker manager">Менеджер</div>
-                                <div class="text">Так я розумію, щоб прослухати всі дзвінки менеджерів - доби не
-                                    вистачить <span class="note">(усмішка)</span><br>Плюс також важко дійсно
-                                    постійно
-                                    обʼєктивно оцінювати дзвінки менеджерів, бо це навіть від настрою може залежати.
-                                </div>
-                            </div>
-
-                            <div class="dialog-line">
-                                <div class="speaker manager">Менеджер</div>
-                                <div class="text">Саме тому ми створили нашу платформу, тому що самі постійно
-                                    стикалися
-                                    з
-                                    цими проблемами. Насправді, ця платформа була створена як раз через те, що ми
-                                    самі
-                                    стикалися з тим постійно і ніяк не могли знайти того рішення, яке б могло
-                                    зберегти
-                                    наш час і дати якісну аналітику в 100% дзвінків.</div>
-                            </div>
-                        </div>
-                    </details>
-
-                    <!-- Option 2: Team Lead Listens -->
-                    <details>
-                        <summary>Клієнт: Тім лід, КВП (РОП), слухають</summary>
-                        <div class="details-content">
-                            <div class="dialog-line">
-                                <div class="speaker manager">Менеджер</div>
-                                <div class="text">Чи помічали ви що тім лід або квп слухають дзвінки на фоні?</div>
-                            </div>
-                            <div class="dialog-line">
-                                <div class="speaker client">Клієнт</div>
-                                <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
-                            </div>
-                        </div>
-                    </details>
-
-                    <!-- Option 3: QA Department -->
-                    <details>
-                        <summary>Клієнт: Відділ контролю якості</summary>
-                        <div class="details-content">
-                            <div class="dialog-line">
-                                <div class="speaker manager">Менеджер</div>
-                                <div class="text">А якщо не секрет <span class="variable">[імʼя клієнта]</span>, чи
-                                    рахували ви, скільки витрачаєте на зарплату працівника та скільки вам загалом це
-                                    обходиться?</div>
-                            </div>
-                            <div class="dialog-line">
-                                <div class="speaker client">Клієнт</div>
-                                <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
-                            </div>
-                            <div class="dialog-line">
-                                <div class="speaker manager">Менеджер</div>
-                                <div class="text">Ви знаєте <span class="variable">[імʼя
-                                        клієнта]</span>, Навіть наш максимальний тариф <span class="note">(або інший
-                                        не
-                                        максимальний тариф і назвати тариф)</span> коштує все одно в декілька разів
-                                    дешевший, ніж одна людина у відділі якості контролю, при тому що ми глибинно
-                                    аналізуємо 100% дзвінків, ви зможете зручно побачити всі дані і всю статистику
-                                    по
-                                    ваших менеджерах в одному місці.</div>
-                            </div>
-                        </div>
-                    </details>
-
-                    <!-- Option 4: Does not listen -->
-                    <details>
-                        <summary>Клієнт: Не слухає взагалі</summary>
-                        <div class="details-content">
-                            <div class="dialog-line">
-                                <div class="speaker manager">Менеджер</div>
-                                <div class="text">Насправді, з нашого досвіду, багато компаній з цим стикається. Для
-                                    прикладу ми проаналізували розмови на те, як менеджери призначають наступну дію,
-                                    ми
-                                    побачили, що у 60% розмов менеджери якісно не призначають наступну дію. Ми
-                                    змінили
-                                    наш скрипт, додали обовʼязкове призначення наступної дії з днем та часом і потім
-                                    проаналізували всі дзвінки і побачили що продажі зросли на 30%.</div>
-                            </div>
-                            <div class="dialog-line">
-                                <div class="speaker manager">Менеджер</div>
-                                <div class="text">А який показник для вас важливий, що вам потрібно аналізувати?
-                                </div>
-                            </div>
-                            <div class="dialog-line">
-                                <div class="speaker client">Клієнт</div>
-                                <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
-                            </div>
-                        </div>
-                    </details>
                 </div>
-            </details>
-            <br>
-            <div class="dialog-line">
-                <div class="speaker manager">Менеджер</div>
-                <div class="text"><span class="variable">[Імʼя клієнта]</span> Як ви вважаєте, яку кількість
-                    дзвінків
-                    вам або вашій команді вдається пронаналізувати?</div>
-            </div>
-            <div class="dialog-line">
-                <div class="speaker client">Клієнт</div>
-                <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
-            </div>
-            <div class="dialog-line">
-                <div class="speaker manager">Менеджер</div>
-                <div class="text">Яким чином ви віддаєте фідбек проаналізованого дзвінка менеджера?</div>
-            </div>
-            <div class="dialog-line">
-                <div class="speaker client">Клієнт</div>
-                <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
+
+                <details>
+                    <summary>Клієнт: Так, буває</summary>
+                    <div class="details-content">
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Як зараз це вирішуєте?</div>
+                        </div>
+
+                        <!-- Option 1: Self Listen -->
+                        <details>
+                            <summary>Клієнт: Вирішую сам (сам слухаю)</summary>
+                            <div class="details-content">
+                                <div class="dialog-line">
+                                    <div class="speaker manager">Менеджер</div>
+                                    <div class="text"><span class="variable">[Імʼя клієнта]</span> Як ви вважаєте, яку
+                                        кількість дзвінків вам або вашій команді вдається пронаналізувати?</div>
+                                </div>
+                                <div class="dialog-line">
+                                    <div class="speaker client">Клієнт</div>
+                                    <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
+                                </div>
+                                <div class="dialog-line">
+                                    <div class="speaker manager">Менеджер</div>
+                                    <div class="text">Яким чином ви віддаєте фідбек проаналізованого дзвінка менеджера?
+                                    </div>
+                                </div>
+
+                                <div class="dialog-line">
+                                    <div class="speaker client">Клієнт</div>
+                                    <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
+                                </div>
+
+                                <div class="dialog-line">
+                                    <div class="speaker manager">Менеджер</div>
+                                    <div class="text">Так я розумію, щоб прослухати всі дзвінки менеджерів - доби не
+                                        вистачить <span class="note">(усмішка)</span><br>Плюс також важко дійсно
+                                        постійно
+                                        обʼєктивно оцінювати дзвінки менеджерів, бо це навіть від настрою може залежати.
+                                    </div>
+                                </div>
+
+                                <div class="dialog-line">
+                                    <div class="speaker manager">Менеджер</div>
+                                    <div class="text">Саме тому ми створили нашу платформу, тому що самі постійно
+                                        стикалися
+                                        з
+                                        цими проблемами. Насправді, ця платформа була створена як раз через те, що ми
+                                        самі
+                                        стикалися з тим постійно і ніяк не могли знайти того рішення, яке б могло
+                                        зберегти
+                                        наш час і дати якісну аналітику в 100% дзвінків.</div>
+                                </div>
+                            </div>
+                        </details>
+
+                        <!-- Option 2: Team Lead Listens -->
+                        <details>
+                            <summary>Клієнт: Тім лід, КВП (РОП), слухають</summary>
+                            <div class="details-content">
+                                <div class="dialog-line">
+                                    <div class="speaker manager">Менеджер</div>
+                                    <div class="text">Чи помічали ви що тім лід або квп слухають дзвінки на фоні?</div>
+                                </div>
+                                <div class="dialog-line">
+                                    <div class="speaker client">Клієнт</div>
+                                    <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
+                                </div>
+                            </div>
+                        </details>
+
+                        <!-- Option 3: QA Department -->
+                        <details>
+                            <summary>Клієнт: Відділ контролю якості</summary>
+                            <div class="details-content">
+                                <div class="dialog-line">
+                                    <div class="speaker manager">Менеджер</div>
+                                    <div class="text">А якщо не секрет <span class="variable">[імʼя клієнта]</span>, чи
+                                        рахували ви, скільки витрачаєте на зарплату працівника та скільки вам загалом це
+                                        обходиться?</div>
+                                </div>
+                                <div class="dialog-line">
+                                    <div class="speaker client">Клієнт</div>
+                                    <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
+                                </div>
+                                <div class="dialog-line">
+                                    <div class="speaker manager">Менеджер</div>
+                                    <div class="text">Ви знаєте <span class="variable">[імʼя
+                                            клієнта]</span>, Навіть наш максимальний тариф <span class="note">(або інший
+                                            не
+                                            максимальний тариф і назвати тариф)</span> коштує все одно в декілька разів
+                                        дешевший, ніж одна людина у відділі якості контролю, при тому що ми глибинно
+                                        аналізуємо 100% дзвінків, ви зможете зручно побачити всі дані і всю статистику
+                                        по
+                                        ваших менеджерах в одному місці.</div>
+                                </div>
+                            </div>
+                        </details>
+
+                        <!-- Option 4: Does not listen -->
+                        <details>
+                            <summary>Клієнт: Не слухає взагалі</summary>
+                            <div class="details-content">
+                                <div class="dialog-line">
+                                    <div class="speaker manager">Менеджер</div>
+                                    <div class="text">Насправді, з нашого досвіду, багато компаній з цим стикається. Для
+                                        прикладу ми проаналізували розмови на те, як менеджери призначають наступну дію,
+                                        ми
+                                        побачили, що у 60% розмов менеджери якісно не призначають наступну дію. Ми
+                                        змінили
+                                        наш скрипт, додали обовʼязкове призначення наступної дії з днем та часом і потім
+                                        проаналізували всі дзвінки і побачили що продажі зросли на 30%.</div>
+                                </div>
+                                <div class="dialog-line">
+                                    <div class="speaker manager">Менеджер</div>
+                                    <div class="text">А який показник для вас важливий, що вам потрібно аналізувати?
+                                    </div>
+                                </div>
+                                <div class="dialog-line">
+                                    <div class="speaker client">Клієнт</div>
+                                    <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+                </details>
+                <br>
+                <div class="dialog-line">
+                    <div class="speaker manager">Менеджер</div>
+                    <div class="text"><span class="variable">[Імʼя клієнта]</span> Як ви вважаєте, яку кількість
+                        дзвінків
+                        вам або вашій команді вдається пронаналізувати?</div>
+                </div>
+                <div class="dialog-line">
+                    <div class="speaker client">Клієнт</div>
+                    <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
+                </div>
+                <div class="dialog-line">
+                    <div class="speaker manager">Менеджер</div>
+                    <div class="text">Яким чином ви віддаєте фідбек проаналізованого дзвінка менеджера?</div>
+                </div>
+                <div class="dialog-line">
+                    <div class="speaker client">Клієнт</div>
+                    <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
+                </div>
             </div>
         </div>
-    </div>
+    </details>
 
     <!-- ПРЕЗЕНТАЦІЯ -->
-    <div class="section" id="presentation">
-        <h2 class="section-title">ПРЕЗЕНТАЦІЯ</h2>
+    <details class="stage-details" id="presentation">
+        <summary>ПРЕЗЕНТАЦІЯ</summary>
+        <div class="details-content">
 
-        <div class="block">
-            <div class="dialog-line">
-                <div class="speaker manager">Менеджер</div>
-                <div class="text"><span class="variable">[Імʼя клієнта]</span>, в цілому зрозумів вашу потребу і те,
-                    що
-                    вам потрібно. Я точно впевнений в тому, що нас сервіс вирішить ваші проблеми і збільшить
-                    кількість
-                    продажів. Ми точно дамо можливість автоматично проаналізувати всі ваші дзвінки, виявити слабкі
-                    місця
-                    та зробити з них сильні сторони.<br>При цьому найбільшою перевагою для вас, буде те що кожен ваш
-                    менеджер матиме доступ до нашої платформи і зможе бачити аналіз кожного свого дзвінка, і
-                    самостійно
-                    покращувати свої показники та конверсію, а отже - цінність.</div>
-            </div>
-            <div class="dialog-line">
-                <div class="speaker manager">Менеджер</div>
-                <div class="text"><span class="variable">[Імʼя клієнта]</span>, давайте заплануємо з вами відео
-                    дзвінок,
-                    я вам покажу як все це насправді виглядає і ви зможете прийняти рішення, наскільки це є корисним
-                    для
-                    вас. Чи можемо з вами запланувати на завтра об одинадцятій годині, - це займе приблизно 20хв.
+            <div class="block">
+                <div class="dialog-line">
+                    <div class="speaker manager">Менеджер</div>
+                    <div class="text"><span class="variable">[Імʼя клієнта]</span>, в цілому зрозумів вашу потребу і те,
+                        що
+                        вам потрібно. Я точно впевнений в тому, що нас сервіс вирішить ваші проблеми і збільшить
+                        кількість
+                        продажів. Ми точно дамо можливість автоматично проаналізувати всі ваші дзвінки, виявити слабкі
+                        місця
+                        та зробити з них сильні сторони.<br>При цьому найбільшою перевагою для вас, буде те що кожен ваш
+                        менеджер матиме доступ до нашої платформи і зможе бачити аналіз кожного свого дзвінка, і
+                        самостійно
+                        покращувати свої показники та конверсію, а отже - цінність.</div>
+                </div>
+                <div class="dialog-line">
+                    <div class="speaker manager">Менеджер</div>
+                    <div class="text"><span class="variable">[Імʼя клієнта]</span>, давайте заплануємо з вами відео
+                        дзвінок,
+                        я вам покажу як все це насправді виглядає і ви зможете прийняти рішення, наскільки це є корисним
+                        для
+                        вас. Чи можемо з вами запланувати на завтра об одинадцятій годині, - це займе приблизно 20хв.
+                    </div>
+                </div>
+                <div class="dialog-line">
+                    <div class="speaker client">Клієнт</div>
+                    <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
                 </div>
             </div>
-            <div class="dialog-line">
-                <div class="speaker client">Клієнт</div>
-                <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
-            </div>
         </div>
-    </div>
+
+    </details>
 
     <!-- ЗАПЕРЕЧЕННЯ -->
-    <div class="section" id="objections">
-        <h2 class="section-title">ЗАПЕРЕЧЕННЯ</h2>
-        <div class="block">
-            <details>
-                <summary>Клієнт: Давайте звʼяжемося пізніше (> 7 днів)</summary>
-                <div class="details-content">
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Я розумію, що графік щільний. При цьому погодьтесь, що кожен день коли ви не
-                            аналізуєте всі дзвінки ваших менеджерів і не бачите проблеми , або бачите її викривленою,
-                            призводить до втрати прибутку. Після перших трьох днів ви побачите результат, тому що
-                            підключення до нашого сервісу майже моментальне, а налаштування будуть автоматично створені
-                            згідно вашого сайту.</div>
-                    </div>
-                    <div class="dialog-line">
-                        <div class="speaker client">Клієнт</div>
-                        <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
-                    </div>
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Ви можете надіслати мені ваш дзвінок, і я завтра на зустрічі зможу
-                            проаналізувати
-                            його, це
-                            займе лічені хвилини. Тому пропоную все ж таки зустрітись у мітс на 20 хвилин, я вам покажу
-                            як
-                            це
-                            працює, і ви приймите рішення чи підходить це вам. Давайте завтра на 10:00?</div>
-                    </div>
-                    <div class="dialog-line">
-                        <div class="speaker client">Клієнт</div>
-                        <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
-                    </div>
-                </div>
-            </details>
-
-            <details>
-                <summary>Клієнт: У нас вже є Ringostat/Binotel/Zadarma. Нам не потрібен ще один інструмент.</summary>
-                <div class="details-content">
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Я чудово розумію. Ви вже маєте фундамент . Але, скажіть, чи Ringostat/Binotel
-                            дає
-                            вам
-                            кастомізовану оцінку навичок кожного менеджера за 7-10 метриками, які ви самі налаштували?
-                            Ми не
-                            дублюємо їхню функцію (телефонію); ми посилюємо їхню функцію (запис), перетворюючи її на
-                            автоматизовану
-                            систему підвищення продажів. Це надбудова, яка монетизує ваші дзвінки.<br>Calldone AI – це
-                            не
-                            просто
-                            транскрибація, це глибокий AI-інструмент, який знаходить 95% помилок ваших менеджерів і
-                            збільшує
-                            ваш
-                            прибуток. Він навчений не просто слухати, а оцінювати вплив розмови на кінцевий продаж.
+    <details class="stage-details" id="objections">
+        <summary>ЗАПЕРЕЧЕННЯ</summary>
+        <div class="details-content">
+            <div class="block">
+                <details>
+                    <summary>Клієнт: Давайте звʼяжемося пізніше (> 7 днів)</summary>
+                    <div class="details-content">
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Я розумію, що графік щільний. При цьому погодьтесь, що кожен день коли
+                                ви не
+                                аналізуєте всі дзвінки ваших менеджерів і не бачите проблеми , або бачите її
+                                викривленою,
+                                призводить до втрати прибутку. Після перших трьох днів ви побачите результат, тому
+                                що
+                                підключення до нашого сервісу майже моментальне, а налаштування будуть автоматично
+                                створені
+                                згідно вашого сайту.</div>
+                        </div>
+                        <div class="dialog-line">
+                            <div class="speaker client">Клієнт</div>
+                            <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
+                        </div>
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Ви можете надіслати мені ваш дзвінок, і я завтра на зустрічі зможу
+                                проаналізувати
+                                його, це
+                                займе лічені хвилини. Тому пропоную все ж таки зустрітись у мітс на 20 хвилин, я вам
+                                покажу
+                                як
+                                це
+                                працює, і ви приймите рішення чи підходить це вам. Давайте завтра на 10:00?</div>
+                        </div>
+                        <div class="dialog-line">
+                            <div class="speaker client">Клієнт</div>
+                            <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
                         </div>
                     </div>
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Ви можете надіслати мені ваш дзвінок, і я завтра на зустрічі зможу
-                            проаналізувати
-                            його, це
-                            займе лічені хвилини. Тому пропоную все ж таки зустрітись у мітс на 20 хвилин, я вам покажу
-                            як
-                            це
-                            працює, і ви приймите рішення чи підходить це вам. Давайте завтра на 10:00?</div>
-                    </div>
-                    <div class="dialog-line">
-                        <div class="speaker client">Клієнт</div>
-                        <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
-                    </div>
-                </div>
-            </details>
+                </details>
 
-
-            <details>
-                <summary>Клієнт: Це занадто дорого. Я можу найняти людину.</summary>
-                <div class="details-content">
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Давайте спробуємо порахувати те, що для вас принесе більше користі і ви
-                            отримаєте
-                            більше
-                            вигоди. Аналітик коштує $500–$800 на місяць + податки + час на його навчання. Він слухає
-                            5–10%
-                            дзвінків
-                            і надає суб'єктивну оцінку. Calldone AI аналізує 100% дзвінків, цілодобово, миттєво після
-                            завершення, за
-                            об'єктивними критеріями. Як ви вважаєте, чи зможете ви за рахунок автоматичної аналітики
-                            кожного
-                            дзвінка
-                            і глибокого розуміння того, як говорять ваші менеджери збільшити прибуток на (сказати в два
-                            рази
-                            більше
-                            ніж ціна пакету для нього)?</div>
-                    </div>
-                    <div class="dialog-line">
-                        <div class="speaker client">Клієнт</div>
-                        <div class="text"><span class="note">(Так)</span></div>
-                    </div>
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">А я вважаю, що ви зможете збільшити прибуток набагато більше, завдяки тому, що
-                            ви
-                            знайдете
-                            слабкі місця/точки росту у ваших дзвінках.</div>
-                    </div>
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Ви можете надіслати мені ваш дзвінок, і я завтра на зустрічі зможу
-                            проаналізувати
-                            його, це
-                            займе лічені хвилини. Тому пропоную все ж таки зустрітись у мітс на 20 хвилин, я вам покажу
-                            як
-                            це
-                            працює, і ви приймите рішення чи підходить це вам. Давайте завтра на 10:00?</div>
-                    </div>
-                    <div class="dialog-line">
-                        <div class="speaker client">Клієнт</div>
-                        <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
-                    </div>
-                </div>
-            </details>
-
-            <details>
-                <summary>Клієнт: Навіщо мені ваш AI, якщо я можу сам прослухати важливі дзвінки?</summary>
-                <div class="details-content">
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Ви, як керівник, можете прослухати важливі дзвінки. Але це лише верхівка
-                            айсберга.
-                            Як ви
-                            вважаєте, скільки коштує година вашого часу?<br>Таким чином ви зможете не лише зекономити а
-                            значно
-                            збільшити свої прибутки та звільнити свій час для того, аби робити нерутинні задачі.</div>
-                    </div>
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Ви можете надіслати мені ваш дзвінок, і я завтра на зустрічі зможу
-                            проаналізувати
-                            його, це
-                            займе лічені хвилини. Тому пропоную все ж таки зустрітись у мітс на 20 хвилин, я вам покажу
-                            як
-                            це
-                            працює, і ви приймите рішення чи підходить це вам. Давайте завтра на 10:00?</div>
-                    </div>
-                    <div class="dialog-line">
-                        <div class="speaker client">Клієнт</div>
-                        <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
-                    </div>
-                </div>
-            </details>
-
-            <details>
-                <summary>Клієнт: AI не зрозуміє нашу специфічну термінологію / індустрію</summary>
-                <div class="details-content">
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Це ключове, і ми це врахували! Наша система – не просто загальний AI. Ми
-                            дозволяємо вам
-                            навчати AI на ваших власних скриптах. Ви задаєте свої кастомні метрики (наприклад, "чи
-                            згадав
-                            менеджер
-                            про перевагу X" або "чи прозвучало слово-заперечення Y"). Якщо хочете, надішліть нам 2-3
-                            дзвінки, ми
-                            проаналізуємо їх за загальними параметрами.</div>
-                    </div>
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Ви можете надіслати мені ваш дзвінок, і я завтра на зустрічі зможу
-                            проаналізувати
-                            його, це
-                            займе лічені хвилини. Тому пропоную все ж таки зустрітись у мітс на 20 хвилин, я вам покажу
-                            як
-                            це
-                            працює, і ви приймите рішення чи підходить це вам. Давайте завтра на 10:00?</div>
-                    </div>
-                    <div class="dialog-line">
-                        <div class="speaker client">Клієнт</div>
-                        <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
-                    </div>
-                </div>
-            </details>
-
-            <details>
-                <summary>Клієнт: У нас мало дзвінків, нам вистачає і ручного контролю.</summary>
-                <div class="details-content">
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Якщо дзвінків мало, це означає, що цінність кожного дзвінка суттєво зростає.
-                            Чи
-                            плануєте
-                            ви зростати?</div>
-                    </div>
-                    <details>
-                        <summary>Клієнт: Так (планую)</summary>
-                        <div class="details-content">
-                            <div class="dialog-line">
-                                <div class="speaker manager">Менеджер</div>
-                                <div class="text">Чудово <span class="variable">[Імʼя клієнта]</span></div>
+                <details>
+                    <summary>Клієнт: У нас вже є Ringostat/Binotel/Zadarma. Нам не потрібен ще один інструмент.
+                    </summary>
+                    <div class="details-content">
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Я чудово розумію. Ви вже маєте фундамент . Але, скажіть, чи
+                                Ringostat/Binotel
+                                дає
+                                вам
+                                кастомізовану оцінку навичок кожного менеджера за 7-10 метриками, які ви самі
+                                налаштували?
+                                Ми не
+                                дублюємо їхню функцію (телефонію); ми посилюємо їхню функцію (запис), перетворюючи
+                                її на
+                                автоматизовану
+                                систему підвищення продажів. Це надбудова, яка монетизує ваші дзвінки.<br>Calldone
+                                AI – це
+                                не
+                                просто
+                                транскрибація, це глибокий AI-інструмент, який знаходить 95% помилок ваших
+                                менеджерів і
+                                збільшує
+                                ваш
+                                прибуток. Він навчений не просто слухати, а оцінювати вплив розмови на кінцевий
+                                продаж.
                             </div>
-                            <div class="dialog-line">
-                                <div class="speaker manager">Менеджер</div>
-                                <div class="text">Ви можете надіслати мені ваш дзвінок, і я завтра на зустрічі зможу
-                                    проаналізувати
-                                    його, це займе лічені хвилини. Тому пропоную все ж таки зустрітись у мітс на 20
-                                    хвилин,
-                                    я вам
-                                    покажу як це працює, і ви приймите рішення чи підходить це вам. Давайте завтра на
-                                    10:00?
+                        </div>
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Ви можете надіслати мені ваш дзвінок, і я завтра на зустрічі зможу
+                                проаналізувати
+                                його, це
+                                займе лічені хвилини. Тому пропоную все ж таки зустрітись у мітс на 20 хвилин, я вам
+                                покажу
+                                як
+                                це
+                                працює, і ви приймите рішення чи підходить це вам. Давайте завтра на 10:00?</div>
+                        </div>
+                        <div class="dialog-line">
+                            <div class="speaker client">Клієнт</div>
+                            <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
+                        </div>
+                    </div>
+                </details>
+
+
+                <details>
+                    <summary>Клієнт: Це занадто дорого. Я можу найняти людину.</summary>
+                    <div class="details-content">
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Давайте спробуємо порахувати те, що для вас принесе більше користі і
+                                ви
+                                отримаєте
+                                більше
+                                вигоди. Аналітик коштує $500–$800 на місяць + податки + час на його навчання. Він
+                                слухає
+                                5–10%
+                                дзвінків
+                                і надає суб'єктивну оцінку. Calldone AI аналізує 100% дзвінків, цілодобово, миттєво
+                                після
+                                завершення, за
+                                об'єктивними критеріями. Як ви вважаєте, чи зможете ви за рахунок автоматичної
+                                аналітики
+                                кожного
+                                дзвінка
+                                і глибокого розуміння того, як говорять ваші менеджери збільшити прибуток на
+                                (сказати в два
+                                рази
+                                більше
+                                ніж ціна пакету для нього)?</div>
+                        </div>
+                        <div class="dialog-line">
+                            <div class="speaker client">Клієнт</div>
+                            <div class="text"><span class="note">(Так)</span></div>
+                        </div>
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">А я вважаю, що ви зможете збільшити прибуток набагато більше, завдяки
+                                тому, що
+                                ви
+                                знайдете
+                                слабкі місця/точки росту у ваших дзвінках.</div>
+                        </div>
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Ви можете надіслати мені ваш дзвінок, і я завтра на зустрічі зможу
+                                проаналізувати
+                                його, це
+                                займе лічені хвилини. Тому пропоную все ж таки зустрітись у мітс на 20 хвилин, я вам
+                                покажу
+                                як
+                                це
+                                працює, і ви приймите рішення чи підходить це вам. Давайте завтра на 10:00?</div>
+                        </div>
+                        <div class="dialog-line">
+                            <div class="speaker client">Клієнт</div>
+                            <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
+                        </div>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Клієнт: Навіщо мені ваш AI, якщо я можу сам прослухати важливі дзвінки?</summary>
+                    <div class="details-content">
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Ви, як керівник, можете прослухати важливі дзвінки. Але це лише
+                                верхівка
+                                айсберга.
+                                Як ви
+                                вважаєте, скільки коштує година вашого часу?<br>Таким чином ви зможете не лише
+                                зекономити а
+                                значно
+                                збільшити свої прибутки та звільнити свій час для того, аби робити нерутинні задачі.
+                            </div>
+                        </div>
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Ви можете надіслати мені ваш дзвінок, і я завтра на зустрічі зможу
+                                проаналізувати
+                                його, це
+                                займе лічені хвилини. Тому пропоную все ж таки зустрітись у мітс на 20 хвилин, я вам
+                                покажу
+                                як
+                                це
+                                працює, і ви приймите рішення чи підходить це вам. Давайте завтра на 10:00?</div>
+                        </div>
+                        <div class="dialog-line">
+                            <div class="speaker client">Клієнт</div>
+                            <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
+                        </div>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Клієнт: AI не зрозуміє нашу специфічну термінологію / індустрію</summary>
+                    <div class="details-content">
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Це ключове, і ми це врахували! Наша система – не просто загальний AI.
+                                Ми
+                                дозволяємо вам
+                                навчати AI на ваших власних скриптах. Ви задаєте свої кастомні метрики (наприклад,
+                                "чи
+                                згадав
+                                менеджер
+                                про перевагу X" або "чи прозвучало слово-заперечення Y"). Якщо хочете, надішліть нам
+                                2-3
+                                дзвінки, ми
+                                проаналізуємо їх за загальними параметрами.</div>
+                        </div>
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Ви можете надіслати мені ваш дзвінок, і я завтра на зустрічі зможу
+                                проаналізувати
+                                його, це
+                                займе лічені хвилини. Тому пропоную все ж таки зустрітись у мітс на 20 хвилин, я вам
+                                покажу
+                                як
+                                це
+                                працює, і ви приймите рішення чи підходить це вам. Давайте завтра на 10:00?</div>
+                        </div>
+                        <div class="dialog-line">
+                            <div class="speaker client">Клієнт</div>
+                            <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
+                        </div>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Клієнт: У нас мало дзвінків, нам вистачає і ручного контролю.</summary>
+                    <div class="details-content">
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Якщо дзвінків мало, це означає, що цінність кожного дзвінка суттєво
+                                зростає.
+                                Чи
+                                плануєте
+                                ви зростати?</div>
+                        </div>
+                        <details>
+                            <summary>Клієнт: Так (планую)</summary>
+                            <div class="details-content">
+                                <div class="dialog-line">
+                                    <div class="speaker manager">Менеджер</div>
+                                    <div class="text">Чудово <span class="variable">[Імʼя клієнта]</span></div>
+                                </div>
+                                <div class="dialog-line">
+                                    <div class="speaker manager">Менеджер</div>
+                                    <div class="text">Ви можете надіслати мені ваш дзвінок, і я завтра на зустрічі
+                                        зможу
+                                        проаналізувати
+                                        його, це займе лічені хвилини. Тому пропоную все ж таки зустрітись у мітс на
+                                        20
+                                        хвилин,
+                                        я вам
+                                        покажу як це працює, і ви приймите рішення чи підходить це вам. Давайте
+                                        завтра на
+                                        10:00?
+                                    </div>
+                                </div>
+                                <div class="dialog-line">
+                                    <div class="speaker client">Клієнт</div>
+                                    <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
                                 </div>
                             </div>
-                            <div class="dialog-line">
-                                <div class="speaker client">Клієнт</div>
-                                <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
+                        </details>
+                        <details>
+                            <summary>Клієнт: Ні (не планую)</summary>
+                            <div class="details-content">
+                                <div class="dialog-line">
+                                    <div class="speaker manager">Менеджер</div>
+                                    <div class="text">Якщо ні, тоді ні. На все добре.</div>
+                                </div>
                             </div>
+                        </details>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Клієнт: Ми не хочемо складної інтеграції. У нас немає часу на налаштування.</summary>
+                    <div class="details-content">
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Повна інтеграція з API займає 20 хвилин. Але щоб почати бачити
+                                результат, вам
+                                потрібно
+                                лише 5 хвилин.</div>
                         </div>
-                    </details>
-                    <details>
-                        <summary>Клієнт: Ні (не планую)</summary>
-                        <div class="details-content">
-                            <div class="dialog-line">
-                                <div class="speaker manager">Менеджер</div>
-                                <div class="text">Якщо ні, тоді ні. На все добре.</div>
-                            </div>
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Ви можете надіслати мені ваш дзвінок, і я завтра на зустрічі зможу
+                                проаналізувати
+                                його, це
+                                займе лічені хвилини. Тому пропоную все ж таки зустрітись у мітс на 20 хвилин, я вам
+                                покажу
+                                як
+                                це
+                                працює, і ви приймите рішення чи підходить це вам. Давайте завтра на 10:00?</div>
                         </div>
-                    </details>
-                </div>
-            </details>
+                        <div class="dialog-line">
+                            <div class="speaker client">Клієнт</div>
+                            <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
+                        </div>
+                    </div>
+                </details>
 
-            <details>
-                <summary>Клієнт: Ми не хочемо складної інтеграції. У нас немає часу на налаштування.</summary>
-                <div class="details-content">
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Повна інтеграція з API займає 20 хвилин. Але щоб почати бачити результат, вам
-                            потрібно
-                            лише 5 хвилин.</div>
+                <details>
+                    <summary>Клієнт: Я не впевнений, що мої менеджери сприймуть це позитивно</summary>
+                    <div class="details-content">
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Це не інструмент для "штрафування". Це інструмент об'єктивного
+                                розвитку. Тому
+                                що
+                                менеджери
+                                зможуть самостійно переглядати свої дзвінки і бачити обʼєктивну оцінку. Через це вам
+                                стане
+                                значно легше
+                                вести аргументовану комунікацію з менеджером. Він завжди буде розуміти, що оцінка є
+                                справедливою
+                                а не
+                                спотвореною кимось. Найбільшою перевагою для вас, буде те що кожен ваш менеджер
+                                матиме
+                                доступ до
+                                нашої
+                                платформи і зможе бачити аналіз кожного свого дзвінка, і самостійно покращувати свої
+                                показники
+                                та
+                                конверсію, а отже - цінність.</div>
+                        </div>
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Ви можете надіслати мені ваш дзвінок, і я завтра на зустрічі зможу
+                                проаналізувати
+                                його, це
+                                займе лічені хвилини. Тому пропоную все ж таки зустрітись у мітс на 20 хвилин, я вам
+                                покажу
+                                як
+                                це
+                                працює, і ви приймите рішення чи підходить це вам. Давайте завтра на 10:00?</div>
+                        </div>
+                        <div class="dialog-line">
+                            <div class="speaker client">Клієнт</div>
+                            <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
+                        </div>
                     </div>
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Ви можете надіслати мені ваш дзвінок, і я завтра на зустрічі зможу
-                            проаналізувати
-                            його, це
-                            займе лічені хвилини. Тому пропоную все ж таки зустрітись у мітс на 20 хвилин, я вам покажу
-                            як
-                            це
-                            працює, і ви приймите рішення чи підходить це вам. Давайте завтра на 10:00?</div>
-                    </div>
-                    <div class="dialog-line">
-                        <div class="speaker client">Клієнт</div>
-                        <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
-                    </div>
-                </div>
-            </details>
+                </details>
 
-            <details>
-                <summary>Клієнт: Я не впевнений, що мої менеджери сприймуть це позитивно</summary>
-                <div class="details-content">
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Це не інструмент для "штрафування". Це інструмент об'єктивного розвитку. Тому
-                            що
-                            менеджери
-                            зможуть самостійно переглядати свої дзвінки і бачити обʼєктивну оцінку. Через це вам стане
-                            значно легше
-                            вести аргументовану комунікацію з менеджером. Він завжди буде розуміти, що оцінка є
-                            справедливою
-                            а не
-                            спотвореною кимось. Найбільшою перевагою для вас, буде те що кожен ваш менеджер матиме
-                            доступ до
-                            нашої
-                            платформи і зможе бачити аналіз кожного свого дзвінка, і самостійно покращувати свої
-                            показники
-                            та
-                            конверсію, а отже - цінність.</div>
+                <details>
+                    <summary>Клієнт: У нашого поточного Call Tracking вже є базова функція транскрибації.</summary>
+                    <div class="details-content">
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Транскрибація – це текст. Це – 10% роботи. Calldone AI – це AI-аналіз:
+                                ми не
+                                просто
+                                перетворюємо звук на текст, ми аналізуємо цей текст: настрій, наявність
+                                слів-паразитів,
+                                виявлення
+                                наступної дії, оцінку роботи із запереченнями, та загальний бал. Це як порівняти
+                                запис у
+                                блокноті з
+                                повним фінансовим аудитом.</div>
+                        </div>
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Ви можете надіслати мені ваш дзвінок, і я завтра на зустрічі зможу
+                                проаналізувати
+                                його, це
+                                займе лічені хвилини. Тому пропоную все ж таки зустрітись у мітс на 20 хвилин, я вам
+                                покажу
+                                як
+                                це
+                                працює, і ви приймите рішення чи підходить це вам. Давайте завтра на 10:00?</div>
+                        </div>
+                        <div class="dialog-line">
+                            <div class="speaker client">Клієнт</div>
+                            <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
+                        </div>
                     </div>
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Ви можете надіслати мені ваш дзвінок, і я завтра на зустрічі зможу
-                            проаналізувати
-                            його, це
-                            займе лічені хвилини. Тому пропоную все ж таки зустрітись у мітс на 20 хвилин, я вам покажу
-                            як
-                            це
-                            працює, і ви приймите рішення чи підходить це вам. Давайте завтра на 10:00?</div>
-                    </div>
-                    <div class="dialog-line">
-                        <div class="speaker client">Клієнт</div>
-                        <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
-                    </div>
-                </div>
-            </details>
+                </details>
 
-            <details>
-                <summary>Клієнт: У нашого поточного Call Tracking вже є базова функція транскрибації.</summary>
-                <div class="details-content">
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Транскрибація – це текст. Це – 10% роботи. Calldone AI – це AI-аналіз: ми не
-                            просто
-                            перетворюємо звук на текст, ми аналізуємо цей текст: настрій, наявність слів-паразитів,
-                            виявлення
-                            наступної дії, оцінку роботи із запереченнями, та загальний бал. Це як порівняти запис у
-                            блокноті з
-                            повним фінансовим аудитом.</div>
+                <details>
+                    <summary>Клієнт: Ми зараз зайняті іншим, повернемося до цього пізніше.</summary>
+                    <div class="details-content">
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Я розумію, що графік щільний. Але кожен день, який ви відкладаєте, ваш
+                                відділ
+                                продажів
+                                продовжує припускатися тих самих помилок. Якщо ваш окупається за 1 місяць, це
+                                означає, що
+                                кожен
+                                тиждень
+                                зволікання коштує вам X втраченого прибутку. Давайте не будемо відкладати.</div>
+                        </div>
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Ви можете надіслати мені ваш дзвінок, і я завтра на зустрічі зможу
+                                проаналізувати
+                                його, це
+                                займе лічені хвилини. Тому пропоную все ж таки зустрітись у мітс на 20 хвилин, я вам
+                                покажу
+                                як
+                                це
+                                працює, і ви приймите рішення чи підходить це вам. Давайте завтра на 10:00?</div>
+                        </div>
+                        <div class="dialog-line">
+                            <div class="speaker client">Клієнт</div>
+                            <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
+                        </div>
                     </div>
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Ви можете надіслати мені ваш дзвінок, і я завтра на зустрічі зможу
-                            проаналізувати
-                            його, це
-                            займе лічені хвилини. Тому пропоную все ж таки зустрітись у мітс на 20 хвилин, я вам покажу
-                            як
-                            це
-                            працює, і ви приймите рішення чи підходить це вам. Давайте завтра на 10:00?</div>
-                    </div>
-                    <div class="dialog-line">
-                        <div class="speaker client">Клієнт</div>
-                        <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
-                    </div>
-                </div>
-            </details>
+                </details>
 
-            <details>
-                <summary>Клієнт: Ми зараз зайняті іншим, повернемося до цього пізніше.</summary>
-                <div class="details-content">
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Я розумію, що графік щільний. Але кожен день, який ви відкладаєте, ваш відділ
-                            продажів
-                            продовжує припускатися тих самих помилок. Якщо ваш окупається за 1 місяць, це означає, що
-                            кожен
-                            тиждень
-                            зволікання коштує вам X втраченого прибутку. Давайте не будемо відкладати.</div>
+                <details>
+                    <summary>Клієнт: Ваші тарифи ґрунтуються на хвилинах, а наші дзвінки дуже довгі.</summary>
+                    <div class="details-content">
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Ви можете фільтрувати маленкі дзвінки по тривалості, наприклад ви
+                                можете
+                                фільтрувати
+                                дзвінки тільки від двох хвилин умовно кажучи.<br>Наш Business-план пропонує найкращу
+                                ціну за
+                                хвилину
+                                (€0,02/хв) та найвигідніший пакет (10 000 хв).</div>
+                        </div>
+                        <div class="dialog-line">
+                            <div class="speaker manager">Менеджер</div>
+                            <div class="text">Ви можете надіслати мені ваш дзвінок, і я завтра на зустрічі зможу
+                                проаналізувати
+                                його, це
+                                займе лічені хвилини. Тому пропоную все ж таки зустрітись у мітс на 20 хвилин, я вам
+                                покажу
+                                як
+                                це
+                                працює, і ви приймите рішення чи підходить це вам. Давайте завтра на 10:00?</div>
+                        </div>
+                        <div class="dialog-line">
+                            <div class="speaker client">Клієнт</div>
+                            <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
+                        </div>
                     </div>
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Ви можете надіслати мені ваш дзвінок, і я завтра на зустрічі зможу
-                            проаналізувати
-                            його, це
-                            займе лічені хвилини. Тому пропоную все ж таки зустрітись у мітс на 20 хвилин, я вам покажу
-                            як
-                            це
-                            працює, і ви приймите рішення чи підходить це вам. Давайте завтра на 10:00?</div>
-                    </div>
-                    <div class="dialog-line">
-                        <div class="speaker client">Клієнт</div>
-                        <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
-                    </div>
-                </div>
-            </details>
-
-            <details>
-                <summary>Клієнт: Ваші тарифи ґрунтуються на хвилинах, а наші дзвінки дуже довгі.</summary>
-                <div class="details-content">
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Ви можете фільтрувати маленкі дзвінки по тривалості, наприклад ви можете
-                            фільтрувати
-                            дзвінки тільки від двох хвилин умовно кажучи.<br>Наш Business-план пропонує найкращу ціну за
-                            хвилину
-                            (€0,02/хв) та найвигідніший пакет (10 000 хв).</div>
-                    </div>
-                    <div class="dialog-line">
-                        <div class="speaker manager">Менеджер</div>
-                        <div class="text">Ви можете надіслати мені ваш дзвінок, і я завтра на зустрічі зможу
-                            проаналізувати
-                            його, це
-                            займе лічені хвилини. Тому пропоную все ж таки зустрітись у мітс на 20 хвилин, я вам покажу
-                            як
-                            це
-                            працює, і ви приймите рішення чи підходить це вам. Давайте завтра на 10:00?</div>
-                    </div>
-                    <div class="dialog-line">
-                        <div class="speaker client">Клієнт</div>
-                        <div class="text"><span class="note">(Слухаємо відповідь клієнта)</span></div>
-                    </div>
-                </div>
-            </details>
+                </details>
+            </div>
         </div>
-    </div>
+    </details>
 </body>
 
 </html>
